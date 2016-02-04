@@ -1,0 +1,21 @@
+<head>
+<script src="necroHTH.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+</head>
+<body>
+number of rounds: <input id="rounds" value="1000">
+<button onclick="fight()">Run HtH (NCE rules) (fighter parries only if they would be hit)</button><br/>
+<table>
+<tr>
+<th colspan="2">Fighter 1
+<th>
+<th colspan="2">Fighter 2
+</tr>
+<tr><td>Weapon Skill + mods<td><input id="f1ws"  value="3"><br><td><td>Weapon Skill + mods<td><input id="f2ws" value="3">
+<tr><td>Attacks<td><input id="f1a" value="1"><br><td><td>Attacks<td><input id="f2a" value="1">
+<tr><td># of parries<td><input id="f1p" value="0"><br><td><td># of parries<td><input id="f2p" value="0">
+<tr><td># of flails<td><input id="f1f" value="0"><br><td><td># of flails<td><input id="f2f" value="0">
+<tr><th id="f1WinH">wins<th id="f1HitH">hits<th id="tieH">ties<th id="f2WinH">wins<th id="f2HitH">hits
+<tr><th id="f1Win"><th id="f1Hit"><th id="tie"><th id="f2Win"><th id="f2Hit">
+</table>
+</body>
