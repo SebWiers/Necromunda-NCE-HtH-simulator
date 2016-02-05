@@ -38,15 +38,17 @@ function getRollResult(roll,flail){
 }
 
 function getOutcome(fightSetup){
-	setup = {
+	var setup = {
 		f1WS : fightSetup.f1WS,
 		f1A : fightSetup.f1A,
 		f1Parry : fightSetup.f1Parry,
 		f1Flail : fightSetup.f1Flail,
+		f1LooseTie : fightSetup.f1LooseTie,
 		f2WS : fightSetup.f2WS,
 		f2A : fightSetup.f2A,
 		f2Parry : fightSetup.f2Parry,
 		f2Flail : fightSetup.f2Flail,
+		f2LooseTie : fightSetup.f2LooseTie
 	};
 	results = {};
 	var f1 = rollDice(setup.f1A) ;
@@ -79,6 +81,14 @@ function getOutcome(fightSetup){
 		results.f2Win = 1;
 		results.f2Hit = f2Result - f1Result;
 	}
+	else if(setup.f2LooseTie){
+		results.f1Win = 1;
+		results.f1Hit = 1;
+	}
+	else if(setup.f1LooseTie){
+		results.f2Win = 1;
+		results.f2Hit = 1;
+	}
 	else { results.tie = 1 }
 	return results;
 };
@@ -89,10 +99,12 @@ function fight(){
 		f1A : parseInt($('#f1a').val() ,10),
 		f1Parry : parseInt($('#f1p').val() ,10),
 		f1Flail : parseInt($('#f1f').val() ,10),
+		f1LooseTie: $('#f1lt').prop('checked')?1:0,
 		f2WS : parseInt($('#f2ws').val() ,10),
 		f2A : parseInt($('#f2a').val() ,10),
 		f2Parry : parseInt($('#f2p').val() ,10),
-		f2Flail : parseInt($('#f2f').val() ,10)
+		f2Flail : parseInt($('#f2f').val() ,10),
+		f2LooseTie: $('#f2lt').prop('checked')?1:0
 	};
 	for (s in setup){
 		setup[s] = !!setup[s] ? setup[s] : 0;
@@ -106,11 +118,10 @@ function fight(){
 			results[o] += outcome[o]
 		}		
 	}
-	console.log(setup,results);
+	//console.log(setup,results);
 	for (o in results){
 		$('#'+o).text(results[o]/rounds);
 	}
-	
 }
 
 
